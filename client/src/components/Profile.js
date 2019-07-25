@@ -8,8 +8,11 @@ import jwt from 'jsonwebtoken';
 
 class Profile extends Component {
   state = {
-    email: '',
-    name: ''
+    visiable: false,
+    change: {
+      email: '',
+      name: ''
+    }
   }
 
   onClick = (event) => {
@@ -23,7 +26,7 @@ class Profile extends Component {
   }
 
   onSave = () => {
-    this.props.updateUser(this.props.user.userId, this.state);
+    this.props.updateUser(this.props.user.userId, this.state.change);
   }
 
   onDelete = () => {
@@ -43,7 +46,7 @@ class Profile extends Component {
           </Link>
           <h6>Your email adress: {user.email}</h6>
           <p>Your user ID: {user.userId}</p>
-          <form className='update'>
+          {this.state.visiable ? <form className='update'>
             <h5> Change your user Information:</h5>
             <TextInput
               name='name'
@@ -58,7 +61,7 @@ class Profile extends Component {
             <button type='submit' style={{ marginTop: 10 }} className='btn btn-primary orange' onClick={this.onSave.bind(this, user.userId)}>
               Change
 						</button>
-          </form>
+          </form> : <div></div>}
           <div className='center' style={{ marginTop: 10 }}>
             <button
               className="btn left brown"

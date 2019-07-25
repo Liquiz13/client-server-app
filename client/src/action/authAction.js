@@ -3,19 +3,12 @@ import setAuthorizationToken from '../utils/setAuthorizationToken';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
-export function setCurrentUser(user) {
-	return {
-		type: LOGIN,
-		user
-	}
-}
-
 export const logInUser = (state) => (dispatch) => {
 	return axios.post('/api/login', state).then(res => {
 		const token = res.data.token
 		localStorage.setItem('jwt', token);
 		setAuthorizationToken(token);
-		dispatch(setCurrentUser(jwt.decode(token)));
+		dispatch({ type: LOGIN, user: jwt.decode(token) });
 	}).catch(err => {
 		dispatch({ type: LOGIN_FAIL, err });
 	});

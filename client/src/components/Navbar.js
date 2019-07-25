@@ -6,9 +6,10 @@ import PropTypes from 'prop-types';
 class Header extends React.Component {
   render() {
     const { session } = this.props.auth
+
     const userLinks = (
       <ul className="nav navbar-nav right">
-        <li><NavLink to="/about">About</NavLink></li>
+        <li><NavLink to="/friends">Friends</NavLink></li>
         <li><NavLink to="/users">Users</NavLink></li>
         <li><NavLink to="/profile">Profile</NavLink></li>
       </ul>
@@ -16,11 +17,11 @@ class Header extends React.Component {
 
     const guestLinks = (
       <ul className="nav navbar-nav right">
-        <li><NavLink to="/about">About</NavLink></li>
         <li><NavLink to="/signup">signUp</NavLink></li>
         <li><NavLink to="/signin">SignIn</NavLink></li>
       </ul>
     )
+
     return (
       <nav className="nav-wrapper red draken-3">
         <div className="container">

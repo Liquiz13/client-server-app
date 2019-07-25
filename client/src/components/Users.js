@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { axiosUsers } from '../action/usersAction';
+import { getUsers } from '../action/usersAction';
 
 class Users extends Component {
   componentWillMount() {
-    this.props.axiosUsers()
+    this.props.getUsers()
   };
   render() {
     const { users } = this.props
@@ -20,9 +20,8 @@ class Users extends Component {
           </div>
         </div>
       )
-    })) : (
-        <p className="center">no users</p>
-      )
+    })) : (<p className="center">no users</p>)
+
     return (
       <div className='container'>
         <h4 className='center'>Users page</h4>
@@ -34,4 +33,4 @@ class Users extends Component {
 
 const mapStateToProps = state => ({ users: state.users })
 
-export default connect(mapStateToProps, { axiosUsers })(Users)
+export default connect(mapStateToProps, { getUsers })(Users)

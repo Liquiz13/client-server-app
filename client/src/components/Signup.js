@@ -10,9 +10,7 @@ class SignUp extends Component {
 		password: ''
 	}
 
-	onChange = (event) => {
-		const name = event.target.name;
-		const value = event.target.value;
+	onChange = (name, value) => {
 		this.setState({ [name]: value })
 	}
 

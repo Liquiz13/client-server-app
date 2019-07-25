@@ -1,9 +1,14 @@
 import React from 'react';
 
-const TextInput = ({ name, label, error, type = "text", ...otherProps }) => {
+const TextInput = ({ name, label, error, type = "text", onChange, ...otherProps }) => {
   let wrapperClass = 'form-group';
   if (error && error.length > 0) {
     wrapperClass += " " + 'has-error';
+  }
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    onChange(name, value);
   }
 
   return (
@@ -14,6 +19,7 @@ const TextInput = ({ name, label, error, type = "text", ...otherProps }) => {
           type={type}
           name={name}
           className="form-control"
+          onChange={handleChange}
           {...otherProps} />
         {error && <div className="alert alert-danger">{error}</div>}
       </div>

@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import logger from 'redux-logger';
 import setAuthorizatonToken from './utils/setAuthorizationToken';
-import { setCurrentUser } from './action/authAction';
+import { LOGIN } from './action/types'
 import jwt from 'jsonwebtoken';
 
 const initState = {}
@@ -17,8 +17,8 @@ const store = createStore(
 );
 
 if (localStorage.jwt) {
-    setAuthorizatonToken(sessionStorage.jwt);
-    store.dispatch(setCurrentUser(jwt.decode(localStorage.jwt)))
+    setAuthorizatonToken(localStorage.jwt);
+    store.dispatch({ user: jwt.decode(localStorage.getItem('jwt')), type: LOGIN })
 }
 
 export default store;

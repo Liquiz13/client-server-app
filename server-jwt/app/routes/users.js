@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const usersController = require('../controllers/users');
-const checkAuth = require('../middleweare/check-auth');
+// const checkAuth = require('../middleweare/check-auth');
 
 router.post('/', usersController.users_create);
 
@@ -16,7 +16,7 @@ router.delete('/:id', usersController.users_delete);
 
 router.post('/:id/friends/', usersController.users_friendReq);
 
-router.put('/:id/friends/', checkAuth, usersController.users_friendAdd);
+router.put('/:id/friends/', usersController.users_friendAdd);
 
 
 

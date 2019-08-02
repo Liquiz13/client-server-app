@@ -2,13 +2,13 @@ import React from 'react';
 import Header from './components/Navbar';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
-import SignIn from './components/SignIn';
-import Users from './components/Users';
-import User from './components/User';
-import SignUp from './components/Signup';
-import Profile from './components/Profile';
-import Friends from './components/Friends';
-import { ProtectedRoute } from './components/Protected.route'
+import SignIn from './components/Sign/SignIn';
+import Users from './components/Users/Users';
+import User from './components/User/User';
+import SignUp from './components/Sign/Signup';
+import Profile from './components/Profile/Profile';
+import Friends from './components/Friends/Friends';
+import { ProtectedRoute } from './components/ProtectedRoute'
 
 
 function App() {

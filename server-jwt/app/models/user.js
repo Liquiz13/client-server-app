@@ -6,8 +6,9 @@ const userSchema = mongoose.Schema({
   name: String,
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  requests: Array,
+  requests: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Requests' }],
   friends: Array,
 })
+
 
 module.exports = mongoose.model('User', userSchema)

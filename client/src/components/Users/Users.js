@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getUsers } from '../action/usersAction';
+import { getUsers } from '../../action/usersAction';
 
 class Users extends Component {
   componentWillMount() {

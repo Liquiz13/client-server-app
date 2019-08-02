@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUser, friendRequest } from '../action/userAction';
+import { getUser, friendRequest } from '../../action/userAction';
 import jwt from 'jsonwebtoken';
 
 class User extends Component {

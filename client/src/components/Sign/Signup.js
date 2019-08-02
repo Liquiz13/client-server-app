@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import TextInput from './TextInput';
+import TextInput from '../TextInput';
 import { connect } from 'react-redux';
-import { signUpUser } from '../action/authAction';
+import { signUpUser } from '../../action/authAction';
 
 class SignUp extends Component {
 	state = {

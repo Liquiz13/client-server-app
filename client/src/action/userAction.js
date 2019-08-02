@@ -42,7 +42,7 @@ export const friendRequest = (id, state) => (dispatch) => {
 }
 
 export const friendAdd = (id, state) => (dispatch) => {
-	axios.post(`/api/users/${id}/friends`, state).then(res => {
+	axios.put(`/api/users/${id}/friends`, state).then(res => {
 		dispatch({ type: FRIEND_ADD })
 	}).catch(err => {
 		dispatch({ type: FRIEND_ADD_FAIL, err })

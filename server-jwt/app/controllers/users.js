@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Requests = require('../models/requests')
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
@@ -94,9 +95,10 @@ exports.users_friendReq = function (req, res) {
 			requests: req.body.requests
 		}
 	})
+		.populate('requests')
 		.exec()
 		.then(request => {
-			res.status(200).json(request);
+			res.status(200).json(requests);
 		})
 		.catch(err => {
 			res.status(500).json({ error: err });
@@ -108,14 +110,17 @@ exports.users_friendAdd = function (req, res) {
 	const ownId = req.params.id;
 	User.updateOne({ _id: requestId }, {
 		$push: {
-			friends: req.body.friends
+			friends: req.body.id
 		}
 	})
 		.exec()
-		.then(user.updateOne({ _id: ownId }, {
+		.then(User.updateOne({ _id: ownId }, {
 			$push: {
-				friends: req.body.id
-			}
+				friends: req.params.id
+			},
+			// $set: {
+			// 	requests: requests.splice(requests.indexOf(requestId), 1)
+			// }
 		})
 			.exec()
 			.then(result => {

@@ -3,8 +3,7 @@ import axios from 'axios';
 export default function setAuthorizatonToken(token) {
 	if (token) {
 		axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-	} if (!token) {
-	} else {
+	}  else {
 		delete axios.defaults.headers.common['Authorization']
 	}
 }

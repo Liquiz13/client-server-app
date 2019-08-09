@@ -61,7 +61,15 @@ exports.users_get_all = function (req, res) {
 
 exports.users_get_one = (req, res) => {
 	const requestId = req.params.id;
-	User.findById(requestId)
+	User.findById({_id: requestId})
+		.populate({
+			path: 'requests',
+			select: 'name email'
+		})
+		.populate({
+			path: 'friends',
+			select: 'name email'
+		})
 		.exec()
 		.then(doc => {
 			if (doc) {
@@ -89,12 +97,11 @@ exports.users_delete = function (req, res) {
 
 exports.users_friendReq = function (req, res) {
 	const requestId = req.params.id;
-	User.updateOne({ _id: requestId }, {
+	User.findByIdAndUpdate(requestId, {
 		$push: {
 			requests: req.body.requests
 		}
 	})
-		.populate('name email')
 		.exec()
 		.then(request => {
 			res.status(200).json(request);
@@ -104,23 +111,34 @@ exports.users_friendReq = function (req, res) {
 		});
 };
 
-exports.users_friendAdd = async function (req, res) {
-	try {
+exports.users_friendAdd = function (req, res) {
 		const userId = req.body.id;
 		const friendId = req.params.id;
-		const user = await User.findById(userId);
-		const friend = await User.findById(friendId);
 
-		user.friends = [...user.friends, friendId];
-		friend.friends = [...friend.friends, userId];
-		user.requests = user.requests.filter(id => id !== friendId);
-
-		user.save();
-		friend.save();
-		res.status(200).json({message: 'СУКЕС БЛЯДЬ!'});
-	} catch (error) {
-		console.log(error);
-		
-		res.status(500).json({message: 'НЕ СУКЕС БЛЯДЬ!', error});
-	}
+		Promise.all([
+			moveFriendFromRequest(userId, friendId),
+			moveFriendFromRequest(friendId, userId)
+		])
+		.then(() => {
+			res.status(200).json({message: 'СУКЕС БЛЯДЬ'});
+		})
+		.catch((error) => {
+			res.status(500).json({message: 'НЕ СУКЕС БЛЯДЬ', error});
+		});
 };
+
+
+const moveFriendFromRequest = (userId, friendId) => {
+	User.findByIdAndUpdate(userId, {
+		$push: {
+			friends: friendId,
+		}
+	})
+	.exec()
+	.then((user) => {
+		if (user.request.find(id => id === friendId)) {
+			user.requests = user.requests.filter((id) => id !== friendId);
+			user.save();
+		}
+	});
+}

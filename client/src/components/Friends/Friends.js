@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getUser, friendAdd } from '../../action/userAction';
 import { getUsers } from '../../action/usersAction';
-// import { selectUserById } from '../selectors/selectors'
 
 class Friends extends React.Component {
   state = {
@@ -24,16 +23,12 @@ class Friends extends React.Component {
       return <p className="center">no requests</p>;
     }
 
-    return requests.map((request, index) => {
+    return requests.map((request) => {
 
       return (
-        <div className="request card" key={index}>
+        <div className="request card" key={request._id}>
           <div className="card-content">
-            <span className="card-title">{request}</span>
-            <p>{index}</p>
-            {console.log(request)}
-            {/* {this.selectUserById(request)} */}
-            {/* <p>{userReq.name}</p> */}
+            <span className="card-title">{request.name}</span>
             <div className='center'>
               <button className='btn green' onClick={this.onAdd.bind(this, { request })}>
                 Accept friend request
@@ -49,12 +44,12 @@ class Friends extends React.Component {
       return <p className="center">no friends</p>;
     }
 
-    return friends.map((friend, index) => {
+    return friends.map((friend) => {
 
       return (
-        <div className="request card" key={index}>
+        <div className="request card" key={friend._id}>
           <div className="card-content">
-            <span className="card-title">{friend}</span>
+            <span className="card-title">{friend.name}</span>
           </div>
         </div >
       )

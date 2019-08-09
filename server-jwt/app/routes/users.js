@@ -16,7 +16,7 @@ router.delete('/:id', usersController.users_delete);
 
 router.post('/:id/friends/', usersController.users_friendReq);
 
-router.put('/:id/friends/', usersController.users_friendAdd);
+router.post('/:id/friends/add', usersController.users_friendAdd);
 
 
 

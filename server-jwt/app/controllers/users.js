@@ -1,5 +1,4 @@
 const User = require('../models/user');
-const Requests = require('../models/requests')
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
@@ -95,39 +94,33 @@ exports.users_friendReq = function (req, res) {
 			requests: req.body.requests
 		}
 	})
-		.populate('requests')
+		.populate('name email')
 		.exec()
 		.then(request => {
-			res.status(200).json(requests);
+			res.status(200).json(request);
 		})
 		.catch(err => {
 			res.status(500).json({ error: err });
 		});
 };
 
-exports.users_friendAdd = function (req, res) {
-	const requestId = req.body.id;
-	const ownId = req.params.id;
-	User.updateOne({ _id: requestId }, {
-		$push: {
-			friends: req.body.id
-		}
-	})
-		.exec()
-		.then(User.updateOne({ _id: ownId }, {
-			$push: {
-				friends: req.params.id
-			},
-			// $set: {
-			// 	requests: requests.splice(requests.indexOf(requestId), 1)
-			// }
-		})
-			.exec()
-			.then(result => {
-				res.status(200).json(result);
-			})
-		)
-		.catch(err => {
-			res.status(500).json({ error: err });
-		});
+exports.users_friendAdd = async function (req, res) {
+	try {
+		const userId = req.body.id;
+		const friendId = req.params.id;
+		const user = await User.findById(userId);
+		const friend = await User.findById(friendId);
+
+		user.friends = [...user.friends, friendId];
+		friend.friends = [...friend.friends, userId];
+		user.requests = user.requests.filter(id => id !== friendId);
+
+		user.save();
+		friend.save();
+		res.status(200).json({message: 'СУКЕС БЛЯДЬ!'});
+	} catch (error) {
+		console.log(error);
+		
+		res.status(500).json({message: 'НЕ СУКЕС БЛЯДЬ!', error});
+	}
 };

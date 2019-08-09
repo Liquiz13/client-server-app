@@ -6,8 +6,6 @@ import { getUsers } from '../../action/usersAction';
 
 class Friends extends React.Component {
   state = {
-    friends: this.id,
-    // index: this.index,
     visiable: true
   }
 
@@ -17,7 +15,7 @@ class Friends extends React.Component {
   };
 
   onAdd = () => {
-    this.props.friendAdd(this.state, this.props.currentUser.userId);
+    this.props.friendAdd(this.props.user._id, this.props.currentUser.userId);
     this.props.history.push('/users');
   }
 
@@ -33,7 +31,7 @@ class Friends extends React.Component {
           <div className="card-content">
             <span className="card-title">{request}</span>
             <p>{index}</p>
-            {console.log(this.id)}
+            {console.log(request)}
             {/* {this.selectUserById(request)} */}
             {/* <p>{userReq.name}</p> */}
             <div className='center'>

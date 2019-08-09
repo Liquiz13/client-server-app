@@ -13,7 +13,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/registration', registrationRoutes);
 app.use('/api', index);
 
-mongoose.connect('mongodb+srv://Liquiz:13212312@clust13-sqjxl.mongodb.net/test?retryWrites=true&w=majority', function (err) {
+mongoose.connect('mongodb://localhost/social-web', function (err) {
     useMongoClient: true;
     { useNewUrlParser: true };
     if (err) throw err;

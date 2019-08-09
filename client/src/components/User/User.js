@@ -18,7 +18,6 @@ class User extends Component {
 	}
 
 	render() {
-		console.log(this.props)
 		const { user } = this.props;
 		if (!user) {
 			return <div className='center'>Loading user...</div>;

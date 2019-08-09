@@ -1,0 +1,21 @@
+{
+  "name": "client-server-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "npm install --prefix client && npm install --prefix server-jwt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Liquiz13/client-server-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Liquiz13/client-server-app/issues"
+  },
+  "homepage": "https://github.com/Liquiz13/client-server-app#readme"
+}

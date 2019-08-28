@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const passport = require ('passport');
-const authController = require ('../controllers/auth')
-
+const passport = require('passport');
+const authController = require('../controllers/auth');
 
 require('../config/passport');
 router.use(passport.initialize())
 router.use(passport.session())
 
- 
+
 const auth = (req, res, next) => {
     if (req.isAuthenticated()) {
         next()

@@ -18,6 +18,7 @@ class SignIn extends React.Component {
   onSave = (event) => {
     event.preventDefault();
     this.props.logInUser(this.state);
+    this.setState({ email: this.state.email, password: this.state.password });
   }
 
 
@@ -33,7 +34,7 @@ class SignIn extends React.Component {
     return (
       <div>
         <h4 className='center'>Login</h4>
-        <form className="login">
+        <form className="login" onSubmit={this.onSave}>
           <TextInput
             name="email"
             label="email"
@@ -50,7 +51,7 @@ class SignIn extends React.Component {
           <div className='left'>
             <button type="submit"
               className="btn btn-primary"
-              onClick={this.onSave}>
+            >
               Log In
             </button>
           </div>

@@ -1,0 +1,16 @@
+.btn-change {
+    background-color: orange
+}
+
+.btn-primary {
+    background-color: orange;
+    margin-right: 20px
+}
+
+.btn-logout {
+    background-color: brown;
+}
+
+.btn-danger {
+    background-color: red
+}

@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import logger from 'redux-logger';
-import setAuthorizatonToken from './utils/setAuthorizationToken';
+import setAuthorizatonToken from './services/setAuthorizationToken';
 import { LOGIN } from './action/types'
 import jwt from 'jsonwebtoken';
 

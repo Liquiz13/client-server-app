@@ -47,6 +47,9 @@ exports.users_change = function (req, res) {
 };
 
 exports.users_get_all = function (req, res) {
+
+	console.log("HERE MUST BE USER", req.userData);
+
 	User.find().exec().then(docs => {
 		if (docs) {
 			res.status(200).json(docs);
@@ -61,7 +64,7 @@ exports.users_get_all = function (req, res) {
 
 exports.users_get_one = (req, res) => {
 	const requestId = req.params.id;
-	User.findById({_id: requestId})
+	User.findById({ _id: requestId })
 		.populate({
 			path: 'requests',
 			select: 'name email'
@@ -112,18 +115,18 @@ exports.users_friendReq = function (req, res) {
 };
 
 exports.users_friendAdd = function (req, res) {
-		const userId = req.body.id;
-		const friendId = req.params.id;
+	const userId = req.body.id;
+	const friendId = req.params.id;
 
-		Promise.all([
-			moveFriendFromRequest(userId, friendId),
-			moveFriendFromRequest(friendId, userId)
-		])
+	Promise.all([
+		moveFriendFromRequest(userId, friendId),
+		moveFriendFromRequest(friendId, userId)
+	])
 		.then(() => {
-			res.status(200).json({message: 'СУКЕС БЛЯДЬ'});
+			res.status(200).json({ message: 'СУКЕС БЛЯДЬ' });
 		})
 		.catch((error) => {
-			res.status(500).json({message: 'НЕ СУКЕС БЛЯДЬ', error});
+			res.status(500).json({ message: 'НЕ СУКЕС БЛЯДЬ', error });
 		});
 };
 
@@ -134,11 +137,11 @@ const moveFriendFromRequest = (userId, friendId) => {
 			friends: friendId,
 		}
 	})
-	.exec()
-	.then((user) => {
-		if (user.request.find(id => id === friendId)) {
-			user.requests = user.requests.filter((id) => id !== friendId);
-			user.save();
-		}
-	});
+		.exec()
+		.then((user) => {
+			if (user.request.find(id => id === friendId)) {
+				user.requests = user.requests.filter((id) => id !== friendId);
+				user.save();
+			}
+		});
 }

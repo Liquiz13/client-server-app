@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { deleteUser, updateUser } from '../../action/userAction';
 import TextInput from '../TextInput';
 import jwt from 'jsonwebtoken';
+import './Profile.css';
 
 
 class Profile extends Component {
@@ -48,12 +49,11 @@ class Profile extends Component {
         onChange={this.onChange}
         value={this.state.email} />
 
-      <button type='submit' style={{ marginTop: 10 }} className='btn btn-primary orange' onClick={this.onSave.bind(this, user.userId)}>
+      <button type='submit' className='btn btn-change' onClick={this.onSave.bind(this, user.userId)}>
         Change
     </button>
     </form> : <button
-      style={{ marginRight: 20 }}
-      className="btn left orange"
+      className="btn btn-primary left"
       onClick={this.onClick = () => {
         this.setState({ visiable: !this.state.visiable })
       }}>
@@ -76,11 +76,11 @@ class Profile extends Component {
 
           <div className='center' style={{ marginTop: 10 }}>
             <button
-              className="btn left brown"
+              className="btn btn-logout left"
               onClick={this.onLogOut}>
               Log Out
             </button>
-            <button className='btn right red' onClick={this.onDelete.bind(this, user.userId)}>
+            <button className='btn btn-danger right' onClick={this.onDelete.bind(this, user.userId)}>
               Delete User
 						</button>
           </div>

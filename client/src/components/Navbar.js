@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import './Navbar.css';
 
 class Header extends React.Component {
   render() {
@@ -9,6 +10,7 @@ class Header extends React.Component {
 
     const userLinks = (
       <ul className="nav navbar-nav right">
+        <li><NavLink to="/chat">Chat</NavLink></li>
         <li><NavLink to="/friends">Friends</NavLink></li>
         <li><NavLink to="/users">Users</NavLink></li>
         <li><NavLink to="/profile">Profile</NavLink></li>

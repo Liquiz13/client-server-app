@@ -1,0 +1,21 @@
+.chat {
+    border-width: 2px;
+}
+
+.chat-history {
+    border-width: 1px;
+    border-style: solid;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.chat-history ul li {
+    margin: 20px;
+  }
+
+
+.chat-num-users {
+    font-size: 20px;
+    margin: 20px;
+    color: rgb(9, 102, 74)
+}

@@ -15,12 +15,16 @@ passport.deserializeUser(function (id, done) {
 passport.use('local.signup', new LocalStrategy({
     usernameField: 'email'
 }, function (email, password, done) {
-    User.findOne({ 'email': email }, function (err, user) {
+    User.findOne({ email }, function (err, user) {
         if (err) {
             return done(err)
         }
-        if (user) {
-            return done(null, user);
+        if (!user) {
+            return done({ message: 'invalid email or password' });
         }
+        // if (!user.comparePassword(password)) {
+        //     return done({ message: 'invalid email or password' });
+        // }
+        return done(null, user);
     })
 }))

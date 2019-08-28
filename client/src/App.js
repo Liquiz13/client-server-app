@@ -8,6 +8,7 @@ import User from './components/User/User';
 import SignUp from './components/Sign/Signup';
 import Profile from './components/Profile/Profile';
 import Friends from './components/Friends/Friends';
+import Chat from './components/Chat/Chat';
 import { ProtectedRoute } from './components/ProtectedRoute'
 
 
@@ -22,6 +23,7 @@ function App() {
           <Route path='/signup' component={SignUp} />
           <ProtectedRoute path='/profile' component={Profile} />
           <ProtectedRoute path='/friends' component={Friends} />
+          <ProtectedRoute path='/chat' component={Chat} />
           <ProtectedRoute path='/users' component={Users} />
           <Route path='/:user_id' component={User} />
         </Switch>

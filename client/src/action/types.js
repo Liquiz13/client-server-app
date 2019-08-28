@@ -22,3 +22,6 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 
 export const SIGNUP = 'SIGNUP';
 export const SIGNUP_FAIL = 'SIGNUP_FAIL';
+
+export const ADD_MESSAGE = 'ADD_MESSAGE';
+export const RECIEVE_MESSAGE = 'RECIEVE_MESSAGE';

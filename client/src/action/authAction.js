@@ -1,5 +1,5 @@
 import { LOGIN, LOGIN_FAIL, SIGNUP, SIGNUP_FAIL } from './types'
-import setAuthorizationToken from '../utils/setAuthorizationToken';
+import setAuthorizationToken from '../services/setAuthorizationToken';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
